@@ -1,0 +1,29 @@
+{
+  "name": "swoole-libs/websocket",
+  "type": "library",
+  "description": "a php websocket manager powered by swoole",
+  "keywords": [ "library", "server", "swoole", "http", "webSocket", "tcp", "udp" ],
+  "homepage": "https://github.com/inhere/swoole-libs/websocket",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inhere",
+      "email": "in.798@qq.com",
+      "homepage": "http://www.yzone.net/"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "inhere/http": "dev-master",
+    "inhere/server": "dev-master",
+    "inhere/library": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "SwooleLib\\WebSocket\\" : "src/"
+    }
+  },
+  "suggest": {
+    "ext-swoole": "The swoole extension is required for running"
+  }
+}
