@@ -16,6 +16,8 @@
     "php": ">=7.0.0",
     "inhere/http": "dev-master",
     "inhere/server": "dev-master",
+    "swoole-libs/context": "^1.0.0",
+    "swoole-libs/utils": "^1.0.0",
     "inhere/library": "dev-master"
   },
   "autoload": {

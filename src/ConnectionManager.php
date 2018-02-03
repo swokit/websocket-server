@@ -8,7 +8,7 @@
 
 namespace SwooleLib\WebSocket;
 
-use Sws\Context\ContextManager;
+use SwooleLib\Context\ContextManager;
 
 /**
  * Class ConnectionManager
@@ -21,7 +21,7 @@ class ConnectionManager extends ContextManager
      */
     protected function getDefaultId()
     {
-//        return Coroutine::tid();
+        // return Coroutine::tid();
     }
 
     /**

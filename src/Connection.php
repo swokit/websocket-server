@@ -9,7 +9,7 @@
 namespace SwooleLib\WebSocket;
 
 use Inhere\Library\Helpers\Obj;
-use Inhere\Server\Context\AbstractContext;
+use SwooleLib\Context\AbstractContext;
 
 use Swoole\Http\Request as SwRequest;
 use Swoole\Http\Response as SwResponse;
