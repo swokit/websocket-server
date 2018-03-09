@@ -8,11 +8,10 @@
 
 namespace SwooleLib\WebSocket;
 
-use Inhere\Library\Helpers\Obj;
-use SwooleLib\Context\AbstractContext;
-
+use MyLib\ObjUtil\Obj;
 use Swoole\Http\Request as SwRequest;
 use Swoole\Http\Response as SwResponse;
+use SwooleLib\Context\AbstractContext;
 
 /**
  * Class Connection - client connection metadata
@@ -62,7 +61,7 @@ class Connection extends AbstractContext
 
         $this->connectTime = time();
 
-//        \Sws::getConnectionManager()->add($this);
+        // \Sws::getConnectionManager()->add($this);
     }
 
     /**
@@ -70,7 +69,7 @@ class Connection extends AbstractContext
      */
     public function destroy()
     {
-//        \Sws::getConnectionManager()->del($this->getId());
+        // \Sws::getConnectionManager()->del($this->getId());
         $this->connectTime = 0;
 
         parent::destroy();
@@ -89,7 +88,7 @@ class Connection extends AbstractContext
     /**
      * @return array
      */
-    public function all()
+    public function all(): array
     {
         return array_merge(parent::all(),[
             'ip' => $this->ip,

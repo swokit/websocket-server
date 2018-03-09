@@ -95,12 +95,12 @@ abstract class AbstractModule implements ModuleInterface
      * @param string $name
      * @param DataParserInterface|null $dataParser
      */
-    public function __construct(array $options = [], $name = null, DataParserInterface $dataParser = null)
+    public function __construct(array $options = [], DataParserInterface $dataParser = null)
     {
         $this->setOptions($options);
 
-        if ($name) {
-            $this->name = $name;
+        if (!$this->name) {
+            $this->name = $this->options['name'] ?? \get_class($this);
         }
 
         $this->_dataParser = $dataParser ?: new JsonDataParser();

@@ -8,8 +8,6 @@
 
 namespace App\Ws\Modules;
 
-use Sws\Annotations\Tags\WsModule;
-
 /**
  * Class ChatModule
  * @package App\Ws\Modules

@@ -8,9 +8,9 @@
 
 namespace SwooleLib\WebSocket;
 
+use MyLib\PhpUtil\PhpHelper;
 use Inhere\Http\Response;
 use Inhere\Http\ServerRequest;
-use Inhere\Library\Helpers\PhpHelper;
 use SwooleLib\WebSocket\Module\ModuleInterface;
 
 /**
@@ -42,7 +42,7 @@ trait WebSocketApplicationTrait
 
         // for http
     ];
-    
+
     /*******************************************************************************
      * websocket handle
      ******************************************************************************/
@@ -129,7 +129,7 @@ trait WebSocketApplicationTrait
     {
         $error = PhpHelper::exceptionToString($e, 1, $catcher);
 
-        Sws::error($error);
+        // Sws::error($error);
 
         $this->server->sendFormatted('', $e->getMessage(), __LINE__)->to($conn->getId())->send();
     }
@@ -163,7 +163,7 @@ trait WebSocketApplicationTrait
             throw new \InvalidArgumentException("The route path[$path] have been registered!");
         }
 
-        Sws::info("register the ws module for path: $path, module: {$module->getName()}, class: " . \get_class($module));
+        // Sws::info("register the ws module for path: $path, module: {$module->getName()}, class: " . \get_class($module));
 
         $this->modules[$path] = $module;
 

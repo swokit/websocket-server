@@ -8,8 +8,8 @@
 
 namespace SwooleLib\WebSocket;
 
-use Inhere\Library\Traits\ArrayAccessByPropertyTrait;
-use Inhere\Library\Traits\PropertyAccessByGetterSetterTrait;
+use MyLib\ObjUtil\Traits\ArrayAccessByPropertyTrait;
+use MyLib\ObjUtil\Traits\PropertyAccessByGetterSetterTrait;
 
 /**
  * Class Message
