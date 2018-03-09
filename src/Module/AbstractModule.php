@@ -80,9 +80,6 @@ abstract class AbstractModule implements ModuleInterface
         // request and response data type: json text
         'dataType' => 'json',
 
-        // It is valid when `'dataType' => 'json'`, allow: 1 raw 2 array 3 object
-        'jsonParseTo' => DataParserInterface::JSON_TO_ARRAY,
-
         // default command name, if request data not define command name.
         'defaultCmd' => self::DEFAULT_CMD,
         // default command suffix

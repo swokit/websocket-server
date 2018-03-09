@@ -19,11 +19,21 @@ class JsonDataParser implements DataParserInterface
 {
     // default cmd key in the request json data.
     const DEFAULT_CMD_KEY = '_cmd';
+    const JSON_TO_RAW = 1;
+    const JSON_TO_ARRAY = 2;
+    const JSON_TO_OBJECT = 3;
 
     /**
      * @var string
      */
     public $cmdKey = '_cmd';
+
+    /**
+     * data decode to
+     *
+     * @var integer
+     */
+    public $jsonParseTo = 2;
 
     /**
      * @param string $data
@@ -38,7 +48,7 @@ class JsonDataParser implements DataParserInterface
         // eg: {"_cmd": "login", "name":"john","pwd":123456}
         $temp = $data;
         $command = '';
-        $to = $module->getOption('jsonParseTo') ?: self::JSON_TO_RAW;
+        $to = $this->jsonParseTo ?: self::JSON_TO_RAW;
         $cmdKey = $this->cmdKey ?: self::DEFAULT_CMD_KEY;
 
         $module->log("The #{$index} request command: $command, data: $data");

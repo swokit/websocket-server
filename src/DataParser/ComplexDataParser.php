@@ -17,6 +17,12 @@ use SwooleLib\WebSocket\Module\ModuleInterface;
  */
 class ComplexDataParser implements DataParserInterface
 {
+    const JSON_TO_RAW = 1;
+    const JSON_TO_ARRAY = 2;
+    const JSON_TO_OBJECT = 3;
+
+    public $jsonParseTo = 2;
+
     /**
      * @param string $data
      * @param int $index
@@ -41,10 +47,10 @@ class ComplexDataParser implements DataParserInterface
             $realData = $data;
         }
 
-        $to = $module->getOption('jsonParseTo') ?: self::JSON_TO_RAW;
+        $to = $this->jsonParseTo ?: self::JSON_TO_RAW;
         $module->log("The #{$index} request Command: $command, To-format: $to, Data: $realData");
 
-        if ($to !== self::JSON_TO_RAW && $module->isJsonType()) {
+        if ($to !== self::JSON_TO_RAW) {
             $realData = json_decode(trim($realData), $to === self::JSON_TO_ARRAY);
 
             // parse error

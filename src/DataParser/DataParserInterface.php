@@ -17,10 +17,7 @@ use SwooleLib\WebSocket\Module\ModuleInterface;
  */
 interface DataParserInterface
 {
-    //
-    const JSON_TO_RAW = 1;
-    const JSON_TO_ARRAY = 2;
-    const JSON_TO_OBJECT = 3;
+
 
     /**
      * @param string $data
