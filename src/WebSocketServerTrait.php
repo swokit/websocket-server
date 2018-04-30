@@ -6,7 +6,7 @@
  * Time: 10:53
  */
 
-namespace SwooleLib\WebSocket;
+namespace SwooleKit\WebSocket\Server;
 
 use Inhere\Server\Helpers\Psr7Http;
 use Swoole\Http\Request as SwRequest;
@@ -16,7 +16,7 @@ use Swoole\Websocket\Server;
 
 /**
  * Class WebSocketServer
- * @package SwooleLib\WebSocket
+ * @package SwooleKit\WebSocket\Server
  *
  * @property Server $server
  */

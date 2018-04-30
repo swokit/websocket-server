@@ -6,11 +6,11 @@
  * Time: 上午1:09
  */
 
-namespace SwooleLib\WebSocket\Chat;
+namespace SwooleKit\WebSocket\Server\Chat;
 
 /**
  * Class UserManager
- * @package SwooleLib\WebSocket\Chat
+ * @package SwooleKit\WebSocket\Server\Chat
  */
 class UserManager
 {

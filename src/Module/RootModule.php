@@ -6,7 +6,7 @@
  * Time: 15:34
  */
 
-namespace SwooleLib\WebSocket\Module;
+namespace SwooleKit\WebSocket\Server\Module;
 
 use Inhere\Http\ServerRequest as Request;
 use Inhere\Http\Response;
@@ -16,7 +16,7 @@ use Inhere\Http\Response;
  *
  * handle the root '/' webSocket request
  *
- * @package SwooleLib\WebSocket\Module
+ * @package SwooleKit\WebSocket\Server\Module
  */
 class RootModule extends AbstractModule
 {

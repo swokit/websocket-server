@@ -6,14 +6,14 @@
  * Time: 下午7:02
  */
 
-namespace SwooleLib\WebSocket;
+namespace SwooleKit\WebSocket\Server;
 
-use MyLib\ObjUtil\Traits\ArrayAccessByPropertyTrait;
-use MyLib\ObjUtil\Traits\PropertyAccessByGetterSetterTrait;
+use Toolkit\ObjUtil\Traits\ArrayAccessByPropertyTrait;
+use Toolkit\ObjUtil\Traits\PropertyAccessByGetterSetterTrait;
 
 /**
  * Class Message
- * @package SwooleLib\WebSocket
+ * @package SwooleKit\WebSocket\Server
  */
 final class Message implements \ArrayAccess
 {

@@ -6,13 +6,13 @@
  * Time: 15:35
  */
 
-namespace SwooleLib\WebSocket\DataParser;
+namespace SwooleKit\WebSocket\Server\DataParser;
 
-use SwooleLib\WebSocket\Module\ModuleInterface;
+use SwooleKit\WebSocket\Server\Module\ModuleInterface;
 
 /**
  * Interface DataParserInterface
- * @package SwooleLib\WebSocket\DataParser
+ * @package SwooleKit\WebSocket\Server\DataParser
  *
  */
 interface DataParserInterface

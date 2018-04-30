@@ -6,11 +6,11 @@
  * Time: 10:59
  */
 
-namespace SwooleLib\WebSocket\Module;
+namespace SwooleKit\WebSocket\Server\Module;
 
 /**
  * Class HandlerAbstracter
- * @package SwooleLib\WebSocket\Module
+ * @package SwooleKit\WebSocket\Server\Module
  */
 class HandlerAbstracter implements HandlerInterface
 {

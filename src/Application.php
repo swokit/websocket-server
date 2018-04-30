@@ -6,11 +6,11 @@
  * Time: 11:27
  */
 
-namespace SwooleLib\WebSocket;
+namespace SwooleKit\WebSocket\Server;
 
 /**
  * Class Application
- * @package SwooleLib\WebSocket
+ * @package SwooleKit\WebSocket\Server
  */
 class Application
 {

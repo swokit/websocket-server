@@ -14,7 +14,7 @@ namespace App\Ws\Modules;
  *
  * @WsModule("chat", path="/chat")
  */
-class ChatModule extends \SwooleLib\WebSocket\Module\ChatModule
+class ChatModule extends \SwooleKit\WebSocket\Server\Module\ChatModule
 {
     protected function init()
     {

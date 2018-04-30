@@ -8,10 +8,10 @@
  */
 
 use Sws\Application;
-use SwooleLib\WebSocket\DataParser\TextDataParser;
-use SwooleLib\WebSocket\Module\EchoModule;
-use SwooleLib\WebSocket\Module\ModuleInterface;
-use SwooleLib\WebSocket\Module\RootModule;
+use SwooleKit\WebSocket\Server\DataParser\TextDataParser;
+use SwooleKit\WebSocket\Server\Module\EchoModule;
+use SwooleKit\WebSocket\Server\Module\ModuleInterface;
+use SwooleKit\WebSocket\Server\Module\RootModule;
 
 //$app = \Sws::$app;
 

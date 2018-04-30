@@ -6,11 +6,11 @@
  * Time: 上午1:15
  */
 
-namespace SwooleLib\WebSocket\Chat;
+namespace SwooleKit\WebSocket\Server\Chat;
 
 /**
  * Class GroupManager
- * @package SwooleLib\WebSocket\Chat
+ * @package SwooleKit\WebSocket\Server\Chat
  */
 class GroupManager
 {

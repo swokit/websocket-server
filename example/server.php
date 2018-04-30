@@ -1,6 +1,6 @@
 <?php
 
-$server = new SwooleLib\WebSocket\WebSocketServer;
+$server = new SwooleKit\WebSocket\Server\WebSocketServer;
 
 /*
 {

@@ -6,11 +6,11 @@
  * Time: 10:33
  */
 
-namespace SwooleLib\WebSocket\Chat;
+namespace SwooleKit\WebSocket\Server\Chat;
 
 /**
  * Class Group
- * @package SwooleLib\WebSocket\Chat
+ * @package SwooleKit\WebSocket\Server\Chat
  */
 class Group
 {

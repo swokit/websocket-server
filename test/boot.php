@@ -12,8 +12,8 @@ date_default_timezone_set('Asia/Shanghai');
 
 $inhereDir = dirname(__DIR__, 2);
 $map = [
-	'SwooleLib\WebSocket\Test\\' => __DIR__,
-	'SwooleLib\WebSocket\\' => dirname(__DIR__) . '/src',
+	'SwooleKit\WebSocket\Server\Test\\' => __DIR__,
+	'SwooleKit\WebSocket\Server\\' => dirname(__DIR__) . '/src',
 ];
 
 spl_autoload_register(function ($class) use ($map) {

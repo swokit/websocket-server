@@ -6,16 +6,16 @@
  * Time: 16:18
  */
 
-namespace SwooleLib\WebSocket;
+namespace SwooleKit\WebSocket\Server;
 
-use MyLib\ObjUtil\Obj;
+use Toolkit\ObjUtil\Obj;
 use Swoole\Http\Request as SwRequest;
 use Swoole\Http\Response as SwResponse;
-use SwooleLib\Context\AbstractContext;
+use SwooleKit\Context\AbstractContext;
 
 /**
  * Class Connection - client connection metadata
- * @package SwooleLib\WebSocket
+ * @package SwooleKit\WebSocket\Server
  */
 class Connection extends AbstractContext
 {

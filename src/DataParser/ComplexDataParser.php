@@ -6,14 +6,14 @@
  * Time: 9:27
  */
 
-namespace SwooleLib\WebSocket\DataParser;
+namespace SwooleKit\WebSocket\Server\DataParser;
 
 use Monolog\Logger;
-use SwooleLib\WebSocket\Module\ModuleInterface;
+use SwooleKit\WebSocket\Server\Module\ModuleInterface;
 
 /**
  * Class ComplexDataParser
- * @package SwooleLib\WebSocket\DataParser
+ * @package SwooleKit\WebSocket\Server\DataParser
  */
 class ComplexDataParser implements DataParserInterface
 {

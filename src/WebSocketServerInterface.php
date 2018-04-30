@@ -6,11 +6,11 @@
  * Time: 13:49
  */
 
-namespace SwooleLib\WebSocket;
+namespace SwooleKit\WebSocket\Server;
 
 /**
  * Interface WsServerInterface
- * @package SwooleLib\WebSocket
+ * @package SwooleKit\WebSocket\Server
  */
 interface WebSocketServerInterface
 {

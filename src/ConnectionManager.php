@@ -6,13 +6,13 @@
  * Time: 上午1:09
  */
 
-namespace SwooleLib\WebSocket;
+namespace SwooleKit\WebSocket\Server;
 
-use SwooleLib\Context\ContextManager;
+use SwooleKit\Context\ContextManager;
 
 /**
  * Class ConnectionManager
- * @package SwooleLib\WebSocket
+ * @package SwooleKit\WebSocket\Server
  */
 class ConnectionManager extends ContextManager
 {

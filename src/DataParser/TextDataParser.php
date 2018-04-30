@@ -6,14 +6,14 @@
  * Time: 15:19
  */
 
-namespace SwooleLib\WebSocket\DataParser;
+namespace SwooleKit\WebSocket\Server\DataParser;
 
 
-use SwooleLib\WebSocket\Module\ModuleInterface;
+use SwooleKit\WebSocket\Server\Module\ModuleInterface;
 
 /**
  * Class TextDataParser
- * @package SwooleLib\WebSocket\DataParser
+ * @package SwooleKit\WebSocket\Server\DataParser
  */
 class TextDataParser implements DataParserInterface
 {
