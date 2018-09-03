@@ -8,16 +8,16 @@
 
 namespace SwooleKit\WebSocket\Server;
 
+use SwooleKit\Http\Server\HttpContext;
 use Toolkit\ObjUtil\Obj;
 use Swoole\Http\Request as SwRequest;
 use Swoole\Http\Response as SwResponse;
-use SwooleKit\Context\AbstractContext;
 
 /**
  * Class Connection - client connection metadata
  * @package SwooleKit\WebSocket\Server
  */
-class Connection extends AbstractContext
+class Connection extends HttpContext
 {
     /**
      * @var string
