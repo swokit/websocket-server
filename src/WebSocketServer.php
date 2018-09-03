@@ -18,8 +18,10 @@ use Swoole\Server as SwServer;
  * Class WebSocketServer
  * @package Inhere\Server\BuiltIn
  */
-class WebSocketServer extends \Inhere\Server\Server
+class WebSocketServer extends \Inhere\Server\Server implements WebSocketServerInterface
 {
+    use WebSocketServerTrait;
+
     const OPCODE_CONTINUATION_FRAME = 0x0;
     const OPCODE_TEXT_FRAME = 0x1;
     const OPCODE_BINARY_FRAME = 0x2;
@@ -88,6 +90,15 @@ class WebSocketServer extends \Inhere\Server\Server
     // $response->end('Not found');
 //        parent::onRequest($request, $response);
 //    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     */
+    protected function handleHttpRequest(Request $request, Response $response)
+    {
+        // TODO: Implement handleHttpRequest() method.
+    }
 
     ////////////////////// WS Server event //////////////////////
 
@@ -164,23 +175,14 @@ class WebSocketServer extends \Inhere\Server\Server
     }
 
     /**
-     * send message to all client user
-     * @param Server $server
-     * @param array $data
+     * custom handshake check.
+     * @param $request
+     * @param $response
+     * @param $cid
+     * @return bool
      */
-//    public function broadcast(Server $server, $data)
-//    {
-//        foreach ($server->connections as $fd) {
-//            $server->push($fd, json_encode($data));
-//        }
-//    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     */
-    protected function handleHttpRequest(Request $request, Response $response)
+    protected function handleHandshake($request, $response, $cid)
     {
-        // TODO: Implement handleHttpRequest() method.
+        // TODO: Implement handleHandshake() method.
     }
 }

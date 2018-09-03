@@ -8,7 +8,7 @@
 
 namespace SwooleKit\WebSocket\Server;
 
-use Inhere\Server\Helpers\Psr7Http;
+use SwooleKit\Http\Server\Util\Psr7Http;
 use Swoole\Http\Request as SwRequest;
 use Swoole\Http\Response as SwResponse;
 use Swoole\Websocket\Frame;
@@ -17,8 +17,6 @@ use Swoole\Websocket\Server;
 /**
  * Class WebSocketServer
  * @package SwooleKit\WebSocket\Server
- *
- * @property Server $server
  */
 trait WebSocketServerTrait
 {
@@ -344,7 +342,7 @@ trait WebSocketServerTrait
      */
     public function genSign(string $key): string
     {
-        return base64_encode(sha1(trim($key) . self::SIGN_KEY, true));
+        return \base64_encode(\sha1(\trim($key) . self::SIGN_KEY, true));
     }
 
     /**
@@ -353,7 +351,7 @@ trait WebSocketServerTrait
      */
     public function isInvalidSecWSKey($secWSKey)
     {
-        return 0 === preg_match(self::WS_KEY_PATTEN, $secWSKey) || 16 !== \strlen(base64_decode($secWSKey));
+        return 0 === \preg_match(self::WS_KEY_PATTEN, $secWSKey) || 16 !== \strlen(\base64_decode($secWSKey));
     }
 
     /**
@@ -451,7 +449,7 @@ trait WebSocketServerTrait
 
         // only one receiver
         if (1 === \count($receivers)) {
-            return $this->sendTo(array_shift($receivers), $data, $sender);
+            return $this->sendTo(\array_shift($receivers), $data, $sender);
         }
 
         // to all
@@ -473,11 +471,11 @@ trait WebSocketServerTrait
      * @param int $sender 发送者
      * @return int
      */
-    public function sendTo(int $receiver, string $data, int $sender = 0)
+    public function sendTo(int $receiver, string $data, int $sender = -1)
     {
         $finish = true;
         $opcode = 1;
-        $fromUser = $sender < 1 ? 'SYSTEM' : $sender;
+        $fromUser = $sender < 0 ? 'SYSTEM' : $sender;
         $this->log("(private)The #{$fromUser} send message to the user #{$receiver}. Data: {$data}");
 
         return $this->server->push($receiver, $data, $opcode, $finish) ? 0 : -500;
@@ -491,7 +489,7 @@ trait WebSocketServerTrait
      * @param int[] $expected 要排除的接收者
      * @return int   Return socket last error number code.  gt 0 on failure, eq 0 on success
      */
-    public function broadcast(string $data, array $receivers = [], array $expected = [], int $sender = 0): int
+    public function broadcast(string $data, array $receivers = [], array $expected = [], int $sender = -1): int
     {
         if (!$data) {
             return 0;
@@ -519,7 +517,7 @@ trait WebSocketServerTrait
      * @param int $sender
      * @return int
      */
-    public function sendToAll(string $data, int $sender = 0): int
+    public function sendToAll(string $data, int $sender = -1): int
     {
         $startFd = 0;
         $count = 0;
