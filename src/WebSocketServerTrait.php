@@ -6,9 +6,9 @@
  * Time: 10:53
  */
 
-namespace SwooleKit\WebSocket\Server;
+namespace SwoKit\WebSocket\Server;
 
-use SwooleKit\Http\Server\Util\Psr7Http;
+use SwoKit\Http\Server\Util\Psr7Http;
 use Swoole\Http\Request as SwRequest;
 use Swoole\Http\Response as SwResponse;
 use Swoole\Websocket\Frame;
@@ -16,7 +16,7 @@ use Swoole\Websocket\Server;
 
 /**
  * Class WebSocketServer
- * @package SwooleKit\WebSocket\Server
+ * @package SwoKit\WebSocket\Server
  */
 trait WebSocketServerTrait
 {

@@ -6,19 +6,19 @@
  * Time: 15:35
  */
 
-namespace SwooleKit\WebSocket\Server\Module;
+namespace SwoKit\WebSocket\Server\Module;
 
 use Monolog\Logger;
 use Swoole\WebSocket\Server;
 use Sws\Application;
 use Inhere\Http\ServerRequest as Request;
 use Inhere\Http\Response;
-use SwooleKit\WebSocket\Server\Connection;
-use SwooleKit\WebSocket\Server\Message;
+use SwoKit\WebSocket\Server\Connection;
+use SwoKit\WebSocket\Server\Message;
 
 /**
  * Interface ModuleInterface
- * @package SwooleKit\WebSocket\Server\Module
+ * @package SwoKit\WebSocket\Server\Module
  */
 interface ModuleInterface
 {

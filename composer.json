@@ -1,9 +1,9 @@
 {
-  "name": "swoole-kit/websocket-server",
+  "name": "swokit/websocket-server",
   "type": "library",
   "description": "a php websocket server manager powered by swoole",
   "keywords": [ "library", "server", "swoole", "http", "webSocket", "tcp", "udp" ],
-  "homepage": "https://github.com/inhere/swoole-kit/websocket-server",
+  "homepage": "https://github.com/inhere/swokit/websocket-server",
   "license": "MIT",
   "authors": [
     {
@@ -16,12 +16,12 @@
     "php": ">=7.0.0",
     "inhere/http": "~1.0",
     "inhere/server": "dev-master",
-    "swoole-kit/context": "^1.0",
-    "swoole-kit/utils": "^1.0"
+    "swokit/context": "^1.0",
+    "swokit/utils": "^1.0"
   },
   "autoload": {
     "psr-4": {
-      "SwooleKit\\WebSocket\\Server\\" : "src/"
+      "SwoKit\\WebSocket\\Server\\" : "src/"
     }
   },
   "suggest": {

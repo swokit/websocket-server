@@ -6,7 +6,7 @@
  * Time: 22:51
  */
 
-namespace SwooleKit\WebSocket\Server\Module;
+namespace SwoKit\WebSocket\Server\Module;
 
 use Inhere\Library\Helpers\PhpHelper;
 use Inhere\Library\Traits\OptionsTrait;
@@ -15,14 +15,14 @@ use Inhere\Http\Response;
 use Monolog\Logger;
 use Swoole\WebSocket\Server;
 use Sws\Application;
-use SwooleKit\WebSocket\Server\DataParser\JsonDataParser;
-use SwooleKit\WebSocket\Server\DataParser\DataParserInterface;
-use SwooleKit\WebSocket\Server\Connection;
-use SwooleKit\WebSocket\Server\Message;
+use SwoKit\WebSocket\Server\DataParser\JsonDataParser;
+use SwoKit\WebSocket\Server\DataParser\DataParserInterface;
+use SwoKit\WebSocket\Server\Connection;
+use SwoKit\WebSocket\Server\Message;
 
 /**
  * Class ARouteHandler
- * @package SwooleKit\WebSocket\Server\Module
+ * @package SwoKit\WebSocket\Server\Module
  */
 abstract class AbstractModule implements ModuleInterface
 {

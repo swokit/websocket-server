@@ -6,11 +6,11 @@
  * Time: 上午1:16
  */
 
-namespace SwooleKit\WebSocket\Server\Chat;
+namespace SwoKit\WebSocket\Server\Chat;
 
 /**
  * Class User
- * @package SwooleKit\WebSocket\Server\Chat
+ * @package SwoKit\WebSocket\Server\Chat
  */
 class User
 {

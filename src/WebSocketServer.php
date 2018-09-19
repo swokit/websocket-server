@@ -6,7 +6,7 @@
  * Time: 16:04
  */
 
-namespace SwooleKit\WebSocket\Server;
+namespace SwoKit\WebSocket\Server;
 
 use Swoole\Http\Request;
 use Swoole\Http\Response;
