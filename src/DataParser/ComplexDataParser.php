@@ -6,14 +6,14 @@
  * Time: 9:27
  */
 
-namespace SwoKit\WebSocket\Server\DataParser;
+namespace Swokit\WebSocket\Server\DataParser;
 
 use Monolog\Logger;
-use SwoKit\WebSocket\Server\Module\ModuleInterface;
+use Swokit\WebSocket\Server\Module\ModuleInterface;
 
 /**
  * Class ComplexDataParser
- * @package SwoKit\WebSocket\Server\DataParser
+ * @package Swokit\WebSocket\Server\DataParser
  */
 class ComplexDataParser implements DataParserInterface
 {
@@ -56,7 +56,7 @@ class ComplexDataParser implements DataParserInterface
             // parse error
             if (json_last_error() > 0) {
                 $errMsg = json_last_error_msg();
-                $module->log("Request data parse to json failed! Error: {$errMsg}, Data: {$data}", [],Logger::ERROR);
+                $module->log("Request data parse to json failed! Error: {$errMsg}, Data: {$data}", [], Logger::ERROR);
                 return false;
             }
         }

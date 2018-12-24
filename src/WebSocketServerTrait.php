@@ -6,9 +6,9 @@
  * Time: 10:53
  */
 
-namespace SwoKit\WebSocket\Server;
+namespace Swokit\WebSocket\Server;
 
-use SwoKit\Http\Server\Util\Psr7Http;
+use Swokit\Http\Server\Util\Psr7Http;
 use Swoole\Http\Request as SwRequest;
 use Swoole\Http\Response as SwResponse;
 use Swoole\Websocket\Frame;
@@ -16,7 +16,7 @@ use Swoole\Websocket\Server;
 
 /**
  * Class WebSocketServer
- * @package SwoKit\WebSocket\Server
+ * @package Swokit\WebSocket\Server
  */
 trait WebSocketServerTrait
 {
@@ -38,7 +38,7 @@ trait WebSocketServerTrait
      */
     private $connections = [];
 
-    /** @var array  */
+    /** @var array */
     protected $messageParsers = [];
 
 ////////////////////// WS Server event //////////////////////
@@ -232,7 +232,7 @@ trait WebSocketServerTrait
      */
     protected function afterOpen($server, Connection $conn)
     {
-         $server->push($conn->getId(), "hello, welcome\n");
+        $server->push($conn->getId(), "hello, welcome\n");
     }
 
     /**

@@ -6,13 +6,13 @@
  * Time: 上午1:09
  */
 
-namespace SwoKit\WebSocket\Server;
+namespace Swokit\WebSocket\Server;
 
-use SwoKit\Context\ContextManager;
+use Swokit\Context\ContextManager;
 
 /**
  * Class ConnectionManager
- * @package SwoKit\WebSocket\Server
+ * @package Swokit\WebSocket\Server
  */
 class ConnectionManager extends ContextManager
 {

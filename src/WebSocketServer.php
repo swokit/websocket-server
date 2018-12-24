@@ -6,13 +6,13 @@
  * Time: 16:04
  */
 
-namespace SwoKit\WebSocket\Server;
+namespace Swokit\WebSocket\Server;
 
 use Swoole\Http\Request;
 use Swoole\Http\Response;
+use Swoole\Server as SwServer;
 use Swoole\Websocket\Frame;
 use Swoole\Websocket\Server;
-use Swoole\Server as SwServer;
 
 /**
  * Class WebSocketServer

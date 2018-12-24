@@ -6,17 +6,17 @@
  * Time: 15:34
  */
 
-namespace SwoKit\WebSocket\Server\Module;
+namespace Swokit\WebSocket\Server\Module;
 
-use Inhere\Http\ServerRequest as Request;
 use Inhere\Http\Response;
+use Inhere\Http\ServerRequest as Request;
 
 /**
  * Class EchoModule
  *
  * handle the root '/echo' webSocket request
  *
- * @package SwoKit\WebSocket\Server\Module
+ * @package Swokit\WebSocket\Server\Module
  */
 class EchoModule extends AbstractModule
 {

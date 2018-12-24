@@ -6,16 +6,16 @@
  * Time: 11:19
  */
 
-namespace SwoKit\WebSocket\Server;
+namespace Swokit\WebSocket\Server;
 
-use Toolkit\PhpUtil\PhpHelper;
 use Inhere\Http\Response;
 use Inhere\Http\ServerRequest;
-use SwoKit\WebSocket\Server\Module\ModuleInterface;
+use Swokit\WebSocket\Server\Module\ModuleInterface;
+use Toolkit\PhpUtil\PhpHelper;
 
 /**
  * Trait WebSocketApplicationTrait
- * @package SwoKit\WebSocket\Server
+ * @package Swokit\WebSocket\Server
  */
 trait WebSocketApplicationTrait
 {

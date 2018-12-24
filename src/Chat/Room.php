@@ -6,11 +6,11 @@
  * Time: 10:32
  */
 
-namespace SwoKit\WebSocket\Server\Chat;
+namespace Swokit\WebSocket\Server\Chat;
 
 /**
  * Class Room
- * @package SwoKit\WebSocket\Server\Chat
+ * @package Swokit\WebSocket\Server\Chat
  */
 class Room
 {

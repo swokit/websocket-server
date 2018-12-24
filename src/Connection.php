@@ -6,16 +6,16 @@
  * Time: 16:18
  */
 
-namespace SwoKit\WebSocket\Server;
+namespace Swokit\WebSocket\Server;
 
-use SwoKit\Http\Server\HttpContext;
-use Toolkit\ObjUtil\Obj;
+use Swokit\Http\Server\HttpContext;
 use Swoole\Http\Request as SwRequest;
 use Swoole\Http\Response as SwResponse;
+use Toolkit\ObjUtil\Obj;
 
 /**
  * Class Connection - client connection metadata
- * @package SwoKit\WebSocket\Server
+ * @package Swokit\WebSocket\Server
  */
 class Connection extends HttpContext
 {
@@ -90,7 +90,7 @@ class Connection extends HttpContext
      */
     public function all(): array
     {
-        return array_merge(parent::all(),[
+        return array_merge(parent::all(), [
             'ip' => $this->ip,
             'port' => $this->port,
             'path' => $this->path,

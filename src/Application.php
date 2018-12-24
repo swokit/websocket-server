@@ -6,11 +6,11 @@
  * Time: 11:27
  */
 
-namespace SwoKit\WebSocket\Server;
+namespace Swokit\WebSocket\Server;
 
 /**
  * Class Application
- * @package SwoKit\WebSocket\Server
+ * @package Swokit\WebSocket\Server
  */
 class Application
 {

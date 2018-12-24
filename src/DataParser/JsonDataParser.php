@@ -6,14 +6,14 @@
  * Time: 9:27
  */
 
-namespace SwoKit\WebSocket\Server\DataParser;
+namespace Swokit\WebSocket\Server\DataParser;
 
 use Monolog\Logger;
-use SwoKit\WebSocket\Server\Module\ModuleInterface;
+use Swokit\WebSocket\Server\Module\ModuleInterface;
 
 /**
  * Class JsonDataParser
- * @package SwoKit\WebSocket\Server\DataParser
+ * @package Swokit\WebSocket\Server\DataParser
  */
 class JsonDataParser implements DataParserInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-$server = new SwoKit\WebSocket\Server\WebSocketServer;
+$server = new Swokit\WebSocket\Server\WebSocketServer;
 
 /*
 {

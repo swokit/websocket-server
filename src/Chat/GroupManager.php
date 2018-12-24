@@ -6,11 +6,11 @@
  * Time: 上午1:15
  */
 
-namespace SwoKit\WebSocket\Server\Chat;
+namespace Swokit\WebSocket\Server\Chat;
 
 /**
  * Class GroupManager
- * @package SwoKit\WebSocket\Server\Chat
+ * @package Swokit\WebSocket\Server\Chat
  */
 class GroupManager
 {

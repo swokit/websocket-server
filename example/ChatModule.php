@@ -14,7 +14,7 @@ namespace App\Ws\Modules;
  *
  * @WsModule("chat", path="/chat")
  */
-class ChatModule extends \SwoKit\WebSocket\Server\Module\ChatModule
+class ChatModule extends \Swokit\WebSocket\Server\Module\ChatModule
 {
     protected function init()
     {

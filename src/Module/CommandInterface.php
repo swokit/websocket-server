@@ -6,11 +6,11 @@
  * Time: 9:49
  */
 
-namespace SwoKit\WebSocket\Server\Module;
+namespace Swokit\WebSocket\Server\Module;
 
 /**
  * Interface CommandInterface
- * @package SwoKit\WebSocket\Server\Module
+ * @package Swokit\WebSocket\Server\Module
  */
 interface CommandInterface
 {

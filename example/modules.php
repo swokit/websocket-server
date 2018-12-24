@@ -7,11 +7,11 @@
  * @var $app Application
  */
 
+use Swokit\WebSocket\Server\DataParser\TextDataParser;
+use Swokit\WebSocket\Server\Module\EchoModule;
+use Swokit\WebSocket\Server\Module\ModuleInterface;
+use Swokit\WebSocket\Server\Module\RootModule;
 use Sws\Application;
-use SwoKit\WebSocket\Server\DataParser\TextDataParser;
-use SwoKit\WebSocket\Server\Module\EchoModule;
-use SwoKit\WebSocket\Server\Module\ModuleInterface;
-use SwoKit\WebSocket\Server\Module\RootModule;
 
 //$app = \Sws::$app;
 
