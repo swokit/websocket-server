@@ -8,8 +8,8 @@
 
 namespace Swokit\WebSocket\Server\Module;
 
-use Inhere\Http\Response;
-use Inhere\Http\ServerRequest as Request;
+use PhpComp\Http\Message\Response;
+use PhpComp\Http\Message\ServerRequest as Request;
 
 /**
  * Class ChatModule

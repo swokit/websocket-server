@@ -8,8 +8,8 @@
 
 namespace Swokit\WebSocket\Server\Module;
 
-use Inhere\Http\Response;
-use Inhere\Http\ServerRequest as Request;
+use PhpComp\Http\Message\Response;
+use PhpComp\Http\Message\ServerRequest as Request;
 use Inhere\Library\Helpers\PhpHelper;
 use Inhere\Library\Traits\OptionsTrait;
 use Monolog\Logger;

@@ -8,8 +8,8 @@
 
 namespace Swokit\WebSocket\Server;
 
-use Inhere\Http\Response;
-use Inhere\Http\ServerRequest;
+use PhpComp\Http\Message\Response;
+use PhpComp\Http\Message\ServerRequest;
 use Swokit\WebSocket\Server\Module\ModuleInterface;
 use Toolkit\PhpUtil\PhpHelper;
 
