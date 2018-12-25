@@ -21,8 +21,8 @@
     }
   ],
   "require": {
-    "php": ">=7.0.0",
-    "inhere/http": "~1.0",
+    "php": ">7.1.0",
+    "php-comp/http-message": "~1.0",
     "swokit/server": "dev-master",
     "swokit/context": "^1.0",
     "swokit/utils": "^1.0"

@@ -16,9 +16,9 @@ use Swoole\Websocket\Server;
 
 /**
  * Class WebSocketServer
- * @package Inhere\Server\BuiltIn
+ * @package Swokit\Server\BuiltIn
  */
-class WebSocketServer extends \Inhere\Server\Server implements WebSocketServerInterface
+class WebSocketServer extends \Swokit\Server\Server implements WebSocketServerInterface
 {
     use WebSocketServerTrait;
 
