@@ -8,9 +8,9 @@
 
 namespace Swokit\WebSocket\Server\Module;
 
+use Monolog\Logger;
 use PhpComp\Http\Message\Response;
 use PhpComp\Http\Message\ServerRequest as Request;
-use Monolog\Logger;
 use Swokit\WebSocket\Server\Connection;
 use Swokit\WebSocket\Server\Message;
 use Swoole\WebSocket\Server;

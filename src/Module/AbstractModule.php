@@ -8,11 +8,11 @@
 
 namespace Swokit\WebSocket\Server\Module;
 
-use PhpComp\Http\Message\Response;
-use PhpComp\Http\Message\ServerRequest as Request;
 use Inhere\Library\Helpers\PhpHelper;
 use Inhere\Library\Traits\OptionsTrait;
 use Monolog\Logger;
+use PhpComp\Http\Message\Response;
+use PhpComp\Http\Message\ServerRequest as Request;
 use Swokit\WebSocket\Server\Connection;
 use Swokit\WebSocket\Server\DataParser\DataParserInterface;
 use Swokit\WebSocket\Server\DataParser\JsonDataParser;
