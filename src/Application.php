@@ -14,10 +14,10 @@ namespace Swokit\WebSocket\Server;
  */
 class Application
 {
-    const DATA_JSON = 'json';
-    const DATA_TEXT = 'text';
+    public const DATA_JSON = 'json';
+    public const DATA_TEXT = 'text';
 
-    const ON_NO_MODULE = 'noModule';
+    public const ON_NO_MODULE = 'noModule';
 
     use WebSocketApplicationTrait;
 }

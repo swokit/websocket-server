@@ -8,31 +8,47 @@
 
 namespace Swokit\WebSocket\Server;
 
+use Swoole\Http\Request;
+use Swoole\Http\Response;
+use Swoole\WebSocket\Frame;
+use Swoole\WebSocket\Server;
+
 /**
  * Interface WsServerInterface
  * @package Swokit\WebSocket\Server
  */
 interface WebSocketServerInterface
 {
-    // some events
-    const ON_WS_CONNECT = 'wsConnect';
-    const ON_WS_OPEN = 'wsOpen';
-    const ON_WS_DISCONNECT = 'wsDisconnect';
-    const ON_HANDSHAKE_REQUEST = 'handshakeRequest';
-    const ON_HANDSHAKE_SUCCESSFUL = 'handshakeSuccessful';
-    const ON_WS_MESSAGE = 'wsMessage';
-    const ON_WS_CLOSE = 'wsClose';
-    const ON_WS_ERROR = 'wsError';
-    const ON_NO_MODULE = 'noModule';
-    const ON_PARSE_ERROR = 'parseError';
+    public const WS_VERSION = 13;
+    public const WS_KEY_PATTEN = '#^[+/0-9A-Za-z]{21}[AQgw]==$#';
+    public const SIGN_KEY = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
 
-    const WS_VERSION = 13;
-    const WS_KEY_PATTEN = '#^[+/0-9A-Za-z]{21}[AQgw]==$#';
-    const SIGN_KEY = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
+    public const HANDSHAKE_OK = 0;
+    public const HANDSHAKE_FAIL = 25;
 
-    const HANDSHAKE_OK = 0;
-    const HANDSHAKE_FAIL = 25;
+    /**
+     * webSocket 连接上时
+     * @param  Server $server
+     * @param  Request $request
+     */
+    public function onOpen(Server $server, Request $request);
 
+    /**
+     * webSocket 收到消息时
+     * @param  Server $server
+     * @param  Frame $frame
+     */
+    public function onMessage(Server $server, Frame $frame);
+
+    /**
+     * webSocket 建立连接后进行握手。WebSocket服务器已经内置了handshake，
+     * 如果用户希望自己进行握手处理，可以设置 onHandShake 事件回调函数。
+     * 注意：设置了 onHandShake 处理后，不会再触发 onOpen
+     * @param Request $swRequest
+     * @param Response $swResponse
+     * @return mixed
+     */
+    public function onHandShake(Request $swRequest, Response $swResponse);
 
     /**
      * send message to client(s)

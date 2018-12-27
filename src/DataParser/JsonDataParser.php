@@ -18,10 +18,10 @@ use Swokit\WebSocket\Server\Module\ModuleInterface;
 class JsonDataParser implements DataParserInterface
 {
     // default cmd key in the request json data.
-    const DEFAULT_CMD_KEY = '_cmd';
-    const JSON_TO_RAW = 1;
-    const JSON_TO_ARRAY = 2;
-    const JSON_TO_OBJECT = 3;
+    public const DEFAULT_CMD_KEY = '_cmd';
+    public const JSON_TO_RAW = 1;
+    public const JSON_TO_ARRAY = 2;
+    public const JSON_TO_OBJECT = 3;
 
     /**
      * @var string

@@ -17,6 +17,7 @@ use Swoole\Websocket\Server;
 /**
  * Class WebSocketServer
  * @package Swokit\WebSocket\Server
+ * property-read \Swoole\WebSocket\Server $server
  */
 trait WebSocketServerTrait
 {
@@ -56,7 +57,7 @@ trait WebSocketServerTrait
 //        $this->log("onConnect: context ID: $ctxKey, connection ID: $fd, form reactor ID: $fromId, info: " . var_export($info, 1));
 
         // 触发 connect 事件回调
-        $this->fire(self::ON_WS_CONNECT, [$server, $fd, $fromId]);
+        $this->fire(WSEvent::WS_CONNECT, $server, $fd, $fromId);
     }
 
     /**
@@ -99,7 +100,7 @@ trait WebSocketServerTrait
         }
 
         $response = $meta->getResponse();
-        $this->fire(self::ON_HANDSHAKE_REQUEST, [$request, $response, $cid]);
+        $this->fire(WSEvent::HANDSHAKE_REQUEST, $request, $response, $cid);
 
         // 如果返回 false -- 拒绝连接，比如需要认证，限定路由，限定ip，限定domain等
         // 就停止继续处理。并返回信息给客户端
@@ -107,7 +108,6 @@ trait WebSocketServerTrait
             $this->log("The #$cid client handshake's callback return false, will close the connection");
 
             Psr7Http::respond($response, $swResponse);
-
             return false;
         }
 
@@ -117,7 +117,7 @@ trait WebSocketServerTrait
             ->setHeaders([
                 'Upgrade' => 'websocket',
                 'Connection' => 'Upgrade',
-                'Sec-WebSocket-Accept' => $this->genSign($secKey),
+                'Sec-WebSocket-Accept' => WSHelper::genSign($secKey),
                 'Sec-WebSocket-Version' => self::WS_VERSION,
             ]);
 
@@ -135,61 +135,13 @@ trait WebSocketServerTrait
         $this->connections[$cid] = $meta;
 
         $this->log("Handshake: The #{$cid} client handshake successful! ctxKey: {$meta->getKey()}, Meta:\n" . var_export($meta->all(), 1));
-        $this->fire(self::ON_HANDSHAKE_SUCCESSFUL, [$request, $response, $cid]);
+        $this->fire(WSEvent::HANDSHAKE_SUCCESS, $request, $response, $cid);
         $this->afterHandshake($meta);
 
         // 握手成功 触发 open 事件
         $this->server->defer(function () use ($swRequest) {
             $this->onOpen($this->server, $swRequest);
         });
-
-        return true;
-    }
-
-    protected function simpleHandshake(SwRequest $request, SwResponse $response)
-    {
-        // print_r( $request->header );
-        // if (如果不满足我某些自定义的需求条件，那么返回end输出，返回false，握手失败) {
-        //    $response->end();
-        //     return false;
-        // }
-
-        // websocket握手连接算法验证
-        $secWebSocketKey = $request->header['sec-websocket-key'];
-        $patten = '#^[+/0-9A-Za-z]{21}[AQgw]==$#';
-
-        if (0 === preg_match($patten, $secWebSocketKey) || 16 !== \strlen(base64_decode($secWebSocketKey))) {
-            $response->end();
-            return false;
-        }
-
-        // echo $request->header['sec-websocket-key'];
-        $key = base64_encode(sha1(
-            $request->header['sec-websocket-key'] . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
-            true
-        ));
-
-        $headers = [
-            'Upgrade' => 'websocket',
-            'Connection' => 'Upgrade',
-            'Sec-WebSocket-Accept' => $key,
-            'Sec-WebSocket-Version' => '13',
-        ];
-
-        // WebSocket connection to 'ws://127.0.0.1:9502/'
-        // failed: Error during WebSocket handshake:
-        // Response must not include 'Sec-WebSocket-Protocol' header if not present in request: websocket
-        if (isset($request->header['sec-websocket-protocol'])) {
-            $headers['Sec-WebSocket-Protocol'] = $request->header['sec-websocket-protocol'];
-        }
-
-        foreach ($headers as $key => $val) {
-            $response->header($key, $val);
-        }
-
-        $response->status(101);
-        $response->end();
-
         return true;
     }
 
@@ -221,7 +173,7 @@ trait WebSocketServerTrait
         $conn = $this->connections[$cid];
 
         $this->log("onOpen: The #{$cid} client open successful! ctxKey: {$conn->getKey()}");
-        $this->fire(self::ON_WS_OPEN, [$this, $conn]);
+        $this->fire(WSEvent::WS_OPEN, $this, $conn);
 
         $this->afterOpen($server, $conn);
     }
@@ -290,10 +242,12 @@ trait WebSocketServerTrait
             }
 
             // call on close callback
-            $this->fire(self::ON_WS_CLOSE, [$this, $fd, $meta]);
-
-            $this->log("onClose: The #$fd client has been closed! workerId: {$server->worker_id} ctxKey:{$meta->getKey()}, From {$meta['ip']}:{$meta['port']}. Count: {$this->count()}");
-            $this->log("onClose: Client #{$fd} is closed. client-info:\n" . var_export($fdInfo, 1));
+            $this->fire(WSEvent::WS_CLOSE, $this, $fd, $meta);
+            $this->logf(
+                'onClose: The #%d client has been closed! workerId: %s ctxKey:%s, From %s:%d. Count: %d',
+                $fd, $server->worker_id, $meta->getKey(), $meta['ip'], $meta['port'], $this->count()
+            );
+            $this->log("onClose: Client #{$fd} is closed. client-info:\n" . \var_export($fdInfo, 1));
         }
     }
 
@@ -310,13 +264,12 @@ trait WebSocketServerTrait
     protected function validateHeaders($cid, $secKey, SwResponse $swResponse)
     {
         // sec-websocket-key 错误
-        if ($this->isInvalidSecWSKey($secKey)) {
+        if (WSHelper::isInvalidSecKey($secKey)) {
             $this->log("handshake failed with client #{$cid}! [Sec-WebSocket-Key] not found OR is error in header.", [], 'error');
 
             $swResponse->status(404);
             $swResponse->write('<b>400 Bad Request</b><br>[Sec-WebSocket-Key] not found in request header.');
             $swResponse->end();
-
             return false;
         }
 
@@ -334,25 +287,6 @@ trait WebSocketServerTrait
 ////////////////////////////////////////////////////////////////////////
 /// message send methods
 ////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Generate WebSocket sign.(for server)
-     * @param string $key
-     * @return string
-     */
-    public function genSign(string $key): string
-    {
-        return \base64_encode(\sha1(\trim($key) . self::SIGN_KEY, true));
-    }
-
-    /**
-     * @param string $secWSKey 'sec-websocket-key: xxxx'
-     * @return bool
-     */
-    public function isInvalidSecWSKey($secWSKey)
-    {
-        return 0 === \preg_match(self::WS_KEY_PATTEN, $secWSKey) || 16 !== \strlen(\base64_decode($secWSKey));
-    }
 
     /**
      * check it a accepted client and handshake completed  client

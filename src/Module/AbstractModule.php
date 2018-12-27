@@ -29,10 +29,10 @@ abstract class AbstractModule implements ModuleInterface
     use OptionsTrait;
 
     // custom ws handler position
-    const OPEN_HANDLER = 0;
-    const MESSAGE_HANDLER = 1;
-    const CLOSE_HANDLER = 2;
-    const ERROR_HANDLER = 3;
+    public const OPEN_HANDLER = 0;
+    public const MESSAGE_HANDLER = 1;
+    public const CLOSE_HANDLER = 2;
+    public const ERROR_HANDLER = 3;
 
     /**
      * the module name
@@ -67,11 +67,11 @@ abstract class AbstractModule implements ModuleInterface
     protected $routes = [];
 
     // default command name, if request data not define command name.
-    const DEFAULT_CMD = 'index';
-    const DEFAULT_CMD_SUFFIX = 'Command';
+    public const DEFAULT_CMD = 'index';
+    public const DEFAULT_CMD_SUFFIX = 'Command';
 
-    const DENY_ALL = '!';
-    const ALLOW_ALL = '*';
+    public const DENY_ALL = '!';
+    public const ALLOW_ALL = '*';
 
     /**
      * @var array

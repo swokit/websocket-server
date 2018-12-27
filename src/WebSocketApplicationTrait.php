@@ -8,9 +8,11 @@
 
 namespace Swokit\WebSocket\Server;
 
+use Co\Websocket\Frame;
 use PhpComp\Http\Message\Response;
 use PhpComp\Http\Message\ServerRequest;
 use Swokit\WebSocket\Server\Module\ModuleInterface;
+use Toolkit\PhpUtil\PhpException;
 use Toolkit\PhpUtil\PhpHelper;
 
 /**
@@ -92,7 +94,7 @@ trait WebSocketApplicationTrait
                 ->setHeaders(['Connection' => 'close'])
                 ->write('Error on handshake: ' . $e->getMessage());
 
-            $error = PhpHelper::exceptionToString($e, 1, __METHOD__);
+            $error = PhpException::toString($e, 1, __METHOD__);
             Sws::error($error);
 
             return false;
@@ -150,9 +152,15 @@ trait WebSocketApplicationTrait
         return $this->module($path, $module, $replace);
     }
 
+    /**
+     * @param string $path
+     * @param ModuleInterface $module
+     * @param bool $replace
+     * @return ModuleInterface
+     */
     public function module(string $path, ModuleInterface $module, $replace = false)
     {
-        $path = trim($path) ?: '/';
+        $path = \trim($path) ?: '/';
         $pattern = '/^\/[a-zA-Z][\w-]+$/';
 
         if ($path !== '/' && 1 !== preg_match($pattern, $path)) {
@@ -202,7 +210,7 @@ trait WebSocketApplicationTrait
      */
     public function getModulePaths(): array
     {
-        return array_keys($this->modules);
+        return \array_keys($this->modules);
     }
 
     /**

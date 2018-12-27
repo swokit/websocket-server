@@ -9,10 +9,10 @@
 namespace Swokit\WebSocket\Server\Module;
 
 /**
- * Class HandlerAbstracter
+ * Class AbstractHandler
  * @package Swokit\WebSocket\Server\Module
  */
-class HandlerAbstracter implements HandlerInterface
+class AbstractHandler implements HandlerInterface
 {
     public function run(string $command)
     {

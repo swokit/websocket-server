@@ -22,12 +22,12 @@ use Sws\Application;
  */
 interface ModuleInterface
 {
-    const SEND_PING = 'ping';
-    const NOT_FOUND = 'notFound';
-    const PARSE_ERROR = 'error';
+    public const SEND_PING = 'ping';
+    public const NOT_FOUND = 'notFound';
+    public const PARSE_ERROR = 'error';
 
-    const DATA_JSON = 'json';
-    const DATA_TEXT = 'text';
+    public const DATA_JSON = 'json';
+    public const DATA_TEXT = 'text';
 
     /**
      * @param Request $request
