@@ -20,8 +20,8 @@ interface DataParserInterface
 
 
     /**
-     * @param string $data
-     * @param int $index
+     * @param string          $data
+     * @param int             $index
      * @param ModuleInterface $module
      * @return array|false
      */

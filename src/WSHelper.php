@@ -17,9 +17,9 @@ use Swoole\Http\Response;
  */
 class WSHelper
 {
-    public const WS_VERSION = 13;
+    public const WS_VERSION    = 13;
     public const WS_KEY_PATTEN = '#^[+/0-9A-Za-z]{21}[AQgw]==$#';
-    public const SIGN_KEY = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
+    public const SIGN_KEY      = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
 
     /**
      * Generate webSocket sign.(for server)
@@ -41,7 +41,7 @@ class WSHelper
     }
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @return bool
      */
@@ -49,7 +49,7 @@ class WSHelper
     {
         // websocket握手连接算法验证
         $secWebSocketKey = $request->header['sec-websocket-key'];
-        $patten = '#^[+/0-9A-Za-z]{21}[AQgw]==$#';
+        $patten          = '#^[+/0-9A-Za-z]{21}[AQgw]==$#';
 
         if (0 === preg_match($patten, $secWebSocketKey) || 16 !== \strlen(\base64_decode($secWebSocketKey))) {
             $response->end();
@@ -63,9 +63,9 @@ class WSHelper
         ));
 
         $headers = [
-            'Upgrade' => 'websocket',
-            'Connection' => 'Upgrade',
-            'Sec-WebSocket-Accept' => $key,
+            'Upgrade'               => 'websocket',
+            'Connection'            => 'Upgrade',
+            'Sec-WebSocket-Accept'  => $key,
             'Sec-WebSocket-Version' => '13',
         ];
 

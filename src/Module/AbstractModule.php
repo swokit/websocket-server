@@ -29,10 +29,10 @@ abstract class AbstractModule implements ModuleInterface
     use OptionsTrait;
 
     // custom ws handler position
-    public const OPEN_HANDLER = 0;
+    public const OPEN_HANDLER    = 0;
     public const MESSAGE_HANDLER = 1;
-    public const CLOSE_HANDLER = 2;
-    public const ERROR_HANDLER = 3;
+    public const CLOSE_HANDLER   = 2;
+    public const ERROR_HANDLER   = 3;
 
     /**
      * the module name
@@ -67,10 +67,10 @@ abstract class AbstractModule implements ModuleInterface
     protected $routes = [];
 
     // default command name, if request data not define command name.
-    public const DEFAULT_CMD = 'index';
+    public const DEFAULT_CMD        = 'index';
     public const DEFAULT_CMD_SUFFIX = 'Command';
 
-    public const DENY_ALL = '!';
+    public const DENY_ALL  = '!';
     public const ALLOW_ALL = '*';
 
     /**
@@ -78,12 +78,12 @@ abstract class AbstractModule implements ModuleInterface
      */
     protected $options = [
         // request and response data type: json text
-        'dataType' => 'json',
+        'dataType'       => 'json',
 
         // default command name, if request data not define command name.
-        'defaultCmd' => self::DEFAULT_CMD,
+        'defaultCmd'     => self::DEFAULT_CMD,
         // default command suffix
-        'cmdSuffix' => self::DEFAULT_CMD_SUFFIX,
+        'cmdSuffix'      => self::DEFAULT_CMD_SUFFIX,
 
         // allowed request Origins. e.g: [ 'localhost', 'site.com' ]
         'allowedOrigins' => '*',
@@ -91,8 +91,8 @@ abstract class AbstractModule implements ModuleInterface
 
     /**
      * the constructor.
-     * @param array $options
-     * @param string $name
+     * @param array                    $options
+     * @param string                   $name
      * @param DataParserInterface|null $dataParser
      */
     public function __construct(array $options = [], DataParserInterface $dataParser = null)
@@ -162,13 +162,13 @@ abstract class AbstractModule implements ModuleInterface
      ******************************************************************************/
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @return bool
      */
     public function validateRequest(Request $request, Response $response): bool
     {
-        $cid = $request->getAttribute('fd');
+        $cid    = $request->getAttribute('fd');
         $origin = $request->getOrigin();
 
         // check `Origin`
@@ -220,15 +220,15 @@ abstract class AbstractModule implements ModuleInterface
 
     /**
      * parse and dispatch message command
-     * @param string $data
+     * @param string     $data
      * @param Connection $conn
-     * @param Server $server
+     * @param Server     $server
      * @return mixed
      */
     public function dispatch(string $data, Connection $conn, Server $server)
     {
-        $name = $this->name;
-        $cid = $conn->getId();
+        $name  = $this->name;
+        $cid   = $conn->getId();
         $route = $conn->getPath();
 
         // parse: get command and real data
@@ -242,7 +242,8 @@ abstract class AbstractModule implements ModuleInterface
             $this->log("The #{$cid} request command is: $command, in route: $route, module: $name, handler: " . static::class);
         } else {
             $command = self::PARSE_ERROR;
-            $this->log("The #{$cid} request data parse failed in route: $route, module: $name. Data: $data", [], Logger::ERROR);
+            $this->log("The #{$cid} request data parse failed in route: $route, module: $name. Data: $data", [],
+                Logger::ERROR);
         }
 
         // dispatch command
@@ -259,7 +260,8 @@ abstract class AbstractModule implements ModuleInterface
 
         // not found
         if (!method_exists($this, $method)) {
-            $this->log("The #{$cid} request command: $command not found, module: $name, run 'notFound' command", [], Logger::NOTICE);
+            $this->log("The #{$cid} request command: $command not found, module: $name, run 'notFound' command", [],
+                Logger::NOTICE);
             $method = self::NOT_FOUND . $suffix;
 
             return $this->$method($data, $command, $cid, $conn);
@@ -270,13 +272,13 @@ abstract class AbstractModule implements ModuleInterface
 
     /**
      * register a command handler
-     * @param string $path
+     * @param string   $path
      * @param callable $handler
      * @return ModuleInterface
      */
     public function route(string $path, $handler): ModuleInterface
     {
-        $path = '/' . trim($path, '/');
+        $path                = '/' . trim($path, '/');
         $this->routes[$path] = $handler;
 
         return $this;
@@ -284,7 +286,7 @@ abstract class AbstractModule implements ModuleInterface
 
     /**
      * register a command handler
-     * @param string $command
+     * @param string   $command
      * @param callable $handler
      * @return ModuleInterface
      */
@@ -295,7 +297,7 @@ abstract class AbstractModule implements ModuleInterface
 
     /**
      * @param string $command
-     * @param $handler
+     * @param        $handler
      * @return $this
      */
     public function add(string $command, $handler): self
@@ -308,7 +310,7 @@ abstract class AbstractModule implements ModuleInterface
     }
 
     /**
-     * @param $data
+     * @param     $data
      * @param int $cid
      * @return int
      */
@@ -318,7 +320,7 @@ abstract class AbstractModule implements ModuleInterface
     }
 
     /**
-     * @param $data
+     * @param     $data
      * @param int $cid
      * @return int
      */
@@ -331,9 +333,9 @@ abstract class AbstractModule implements ModuleInterface
     }
 
     /**
-     * @param mixed $data
-     * @param string $command
-     * @param int $cid
+     * @param mixed      $data
+     * @param string     $command
+     * @param int        $cid
      * @param Connection $conn
      * @return int
      */
@@ -418,10 +420,10 @@ abstract class AbstractModule implements ModuleInterface
     }
 
     /**
-     * @param $data
+     * @param        $data
      * @param string $msg
-     * @param int $code
-     * @param bool $doSend
+     * @param int    $code
+     * @param bool   $doSend
      * @return int|Message
      */
     public function respond($data, string $msg = 'success', int $code = 0, bool $doSend = true)
@@ -430,7 +432,7 @@ abstract class AbstractModule implements ModuleInterface
     }
 
     /**
-     * @param $data
+     * @param      $data
      * @param bool $doSend
      * @return Message|int
      */

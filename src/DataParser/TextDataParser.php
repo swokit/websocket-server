@@ -18,8 +18,8 @@ use Swokit\WebSocket\Server\Module\ModuleInterface;
 class TextDataParser implements DataParserInterface
 {
     /**
-     * @param string $data
-     * @param int $index
+     * @param string          $data
+     * @param int             $index
      * @param ModuleInterface $module
      * @return array|false
      */

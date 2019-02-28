@@ -34,10 +34,10 @@ trait WebSocketApplicationTrait
     protected $options = [
         'debug' => false,
 
-        'name' => 'application',
+        'name'           => 'application',
 
         // request and response data type: json text
-        'dataType' => 'json',
+        'dataType'       => 'json',
 
         // allowed accessed Origins. e.g: [ 'localhost', 'site.com' ]
         'allowedOrigins' => '*',
@@ -52,8 +52,8 @@ trait WebSocketApplicationTrait
     /**
      * webSocket 只会在连接握手时会有 request, response
      * @param ServerRequest $request
-     * @param Response $response
-     * @param int $cid
+     * @param Response      $response
+     * @param int           $cid
      * @return bool
      */
     public function handleHandshake(ServerRequest $request, Response $response, int $cid): ?bool
@@ -119,13 +119,13 @@ trait WebSocketApplicationTrait
         } catch (\Throwable $e) {
             $this->handleWsException($e, $conn, __METHOD__);
         }
-//        return;
+        //        return;
     }
 
     /**
      * @param \Throwable|\Exception $e
-     * @param Connection $conn
-     * @param $catcher
+     * @param Connection            $conn
+     * @param                       $catcher
      */
     public function handleWsException($e, Connection $conn, $catcher): void
     {
@@ -142,9 +142,9 @@ trait WebSocketApplicationTrait
 
     /**
      * register a route and it's handler module
-     * @param string $path route path
+     * @param string          $path route path
      * @param ModuleInterface $module the route path module
-     * @param bool $replace replace exists's route
+     * @param bool            $replace replace exists's route
      * @return ModuleInterface
      */
     public function addModule(string $path, ModuleInterface $module, $replace = false): ModuleInterface
@@ -153,14 +153,14 @@ trait WebSocketApplicationTrait
     }
 
     /**
-     * @param string $path
+     * @param string          $path
      * @param ModuleInterface $module
-     * @param bool $replace
+     * @param bool            $replace
      * @return ModuleInterface
      */
     public function module(string $path, ModuleInterface $module, $replace = false): ModuleInterface
     {
-        $path = \trim($path) ?: '/';
+        $path    = \trim($path) ?: '/';
         $pattern = '/^\/[a-zA-Z][\w-]+$/';
 
         if ($path !== '/' && 1 !== preg_match($pattern, $path)) {
@@ -189,7 +189,7 @@ trait WebSocketApplicationTrait
 
     /**
      * @param string $path
-     * @param bool $throwError
+     * @param bool   $throwError
      * @return ModuleInterface
      */
     public function getModule(string $path = '/', $throwError = true): ModuleInterface

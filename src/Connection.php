@@ -91,11 +91,11 @@ class Connection extends HttpContext
     public function all(): array
     {
         return \array_merge(parent::all(), [
-            'ip' => $this->ip,
-            'port' => $this->port,
-            'path' => $this->path,
-            'handshake' => $this->handshake,
-            'connectTime' => $this->connectTime,
+            'ip'            => $this->ip,
+            'port'          => $this->port,
+            'path'          => $this->path,
+            'handshake'     => $this->handshake,
+            'connectTime'   => $this->connectTime,
             'handshakeTime' => $this->handshakeTime,
         ]);
     }
@@ -105,8 +105,8 @@ class Connection extends HttpContext
      */
     public function handshake(): void
     {
-        $this->path = $this->request->getPath();
-        $this->handshake = true;
+        $this->path          = $this->request->getPath();
+        $this->handshake     = true;
         $this->handshakeTime = \time();
     }
 

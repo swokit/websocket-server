@@ -19,9 +19,9 @@ class JsonDataParser implements DataParserInterface
 {
     // default cmd key in the request json data.
     public const DEFAULT_CMD_KEY = '_cmd';
-    public const JSON_TO_RAW = 1;
-    public const JSON_TO_ARRAY = 2;
-    public const JSON_TO_OBJECT = 3;
+    public const JSON_TO_RAW     = 1;
+    public const JSON_TO_ARRAY   = 2;
+    public const JSON_TO_OBJECT  = 3;
 
     /**
      * @var string
@@ -36,8 +36,8 @@ class JsonDataParser implements DataParserInterface
     public $jsonParseTo = 2;
 
     /**
-     * @param string $data
-     * @param int $index
+     * @param string          $data
+     * @param int             $index
      * @param ModuleInterface $module
      * @return array|false
      */
@@ -46,10 +46,10 @@ class JsonDataParser implements DataParserInterface
         // json parser
         // format: {"_cmd": "value", ... ...}
         // eg: {"_cmd": "login", "name":"john","pwd":123456}
-        $temp = $data;
+        $temp    = $data;
         $command = '';
-        $to = $this->jsonParseTo ?: self::JSON_TO_RAW;
-        $cmdKey = $this->cmdKey ?: self::DEFAULT_CMD_KEY;
+        $to      = $this->jsonParseTo ?: self::JSON_TO_RAW;
+        $cmdKey  = $this->cmdKey ?: self::DEFAULT_CMD_KEY;
 
         $module->log("The #{$index} request command: $command, data: $data");
 
@@ -59,7 +59,8 @@ class JsonDataParser implements DataParserInterface
         if (json_last_error() > 0) {
             $errMsg = json_last_error_msg();
 
-            $module->log("The #{$index} request data parse to json failed! MSG: {$errMsg}, Data: {$temp}", [], Logger::ERROR);
+            $module->log("The #{$index} request data parse to json failed! MSG: {$errMsg}, Data: {$temp}", [],
+                Logger::ERROR);
 
             return false;
         }

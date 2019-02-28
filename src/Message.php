@@ -50,29 +50,33 @@ final class Message implements \ArrayAccess
 
     /**
      * @param string $data
-     * @param array $receivers
-     * @param array $excepted
-     * @param int $sender
+     * @param array  $receivers
+     * @param array  $excepted
+     * @param int    $sender
      * @return Message
      */
-    public static function make(string $data = '', array $receivers = [], array $excepted = [], int $sender = 0): Message
-    {
+    public static function make(
+        string $data = '',
+        array $receivers = [],
+        array $excepted = [],
+        int $sender = 0
+    ): Message {
         return new self($data, $receivers, $excepted, $sender);
     }
 
     /**
      * Message constructor.
      * @param string $data
-     * @param int $sender
-     * @param array $receivers
-     * @param array $excepted
+     * @param int    $sender
+     * @param array  $receivers
+     * @param array  $excepted
      */
     public function __construct(string $data = '', array $receivers = [], array $excepted = [], int $sender = 0)
     {
-        $this->data = $data;
-        $this->sender = $sender;
+        $this->data      = $data;
+        $this->sender    = $sender;
         $this->receivers = $receivers;
-        $this->excepted = $excepted;
+        $this->excepted  = $excepted;
     }
 
     /**
@@ -109,7 +113,7 @@ final class Message implements \ArrayAccess
         }
 
         // mark message have been sent
-        $this->_sent = true;
+        $this->_sent   = true;
         $this->_status = $status;
 
         return $status;
@@ -120,8 +124,8 @@ final class Message implements \ArrayAccess
      */
     public function reset()
     {
-        $this->_sent = false;
-        $this->sender = $this->_status = 0;
+        $this->_sent     = false;
+        $this->sender    = $this->_status = 0;
         $this->receivers = $this->excepted = $this->data = [];
 
         return $this;
@@ -253,7 +257,7 @@ final class Message implements \ArrayAccess
 
     /**
      * @param string $data
-     * @param bool $toLast
+     * @param bool   $toLast
      * @return $this
      */
     public function addData(string $data, bool $toLast = true): self

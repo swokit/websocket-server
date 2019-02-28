@@ -4,13 +4,13 @@ $table = new swoole_table(1024);
 $table->column('fd', swoole_table::TYPE_INT);
 $table->create();
 
-$ws = new swoole_websocket_server('0.0.0.0', 9502);
+$ws        = new swoole_websocket_server('0.0.0.0', 9502);
 $ws->table = $table;
 
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) {
 
-    $ws->table->set($request->fd, array('fd' => $request->fd));//获取客户端id插入table
+    $ws->table->set($request->fd, ['fd' => $request->fd]);//获取客户端id插入table
 
     foreach ($ws->table as $u) {
         var_dump($u); //输出整个table

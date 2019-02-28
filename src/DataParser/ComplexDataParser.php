@@ -17,15 +17,15 @@ use Swokit\WebSocket\Server\Module\ModuleInterface;
  */
 class ComplexDataParser implements DataParserInterface
 {
-    public const JSON_TO_RAW = 1;
-    public const JSON_TO_ARRAY = 2;
+    public const JSON_TO_RAW    = 1;
+    public const JSON_TO_ARRAY  = 2;
     public const JSON_TO_OBJECT = 3;
 
     public $jsonParseTo = 2;
 
     /**
-     * @param string $data
-     * @param int $index
+     * @param string          $data
+     * @param int             $index
      * @param ModuleInterface $module
      * @return array|false
      */

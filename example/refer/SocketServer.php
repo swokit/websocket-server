@@ -23,11 +23,11 @@ class WebSocketServer1
 
     public function __construct()
     {
-        $socket_server = config('web_socket.server');
+        $socket_server      = config('web_socket.server');
         $this->socketServer = new \swoole_websocket_server($socket_server['host'], $socket_server['port']);
         $this->socketServer->set([
             'worker_num' => 8,
-            'daemonize' => false,
+            'daemonize'  => false,
         ]);
         $this->gateWay = new Gateway($this->socketServer);
         $this->socketServer->on('open', [$this, 'onOpen']);
@@ -50,27 +50,27 @@ class WebSocketServer1
                 break;
             //update location
             case 'update':
-                $stat = new Stat();
+                $stat      = new Stat();
                 $nameArray = explode(',', $this->name);
-                $name = $nameArray[random_int(0, count($nameArray))];
-                $status = [
-                    'type' => 'update',
-                    'id' => $client,
-                    'angle' => $message['angle'] + 0,
-                    'momentum' => $message['momentum'] + 0,
-                    'x' => $message['x'] + 0,
-                    'y' => $message['y'] + 0,
-                    'life' => 1,
-                    'size' => $stat->getGender($client) == 1 ? 20 : 4,
-                    'name' => $message['name'] ?? $name,
+                $name      = $nameArray[random_int(0, count($nameArray))];
+                $status    = [
+                    'type'       => 'update',
+                    'id'         => $client,
+                    'angle'      => $message['angle'] + 0,
+                    'momentum'   => $message['momentum'] + 0,
+                    'x'          => $message['x'] + 0,
+                    'y'          => $message['y'] + 0,
+                    'life'       => 1,
+                    'size'       => $stat->getGender($client) == 1 ? 20 : 4,
+                    'name'       => $message['name'] ?? $name,
                     'authorized' => false,
                 ];
                 return $this->gateWay->updateLocation($client, $status);
             // send message
             case 'message':
                 $newMessage = [
-                    'type' => 'message',
-                    'id' => $client,
+                    'type'    => 'message',
+                    'id'      => $client,
                     'message' => $message['message'],
                 ];
                 $this->gateWay->sendMessage($newMessage);
@@ -88,7 +88,7 @@ class WebSocketServer1
         //响应客户端的连接
         $welcome = [
             'type' => 'welcome',
-            'id' => $client
+            'id'   => $client
         ];
         $this->gateWay->sendTo($client, json_encode($welcome));
     }
