@@ -67,7 +67,7 @@ class Connection extends HttpContext
     /**
      * destroy
      */
-    public function destroy()
+    public function destroy(): void
     {
         // \Sws::getConnectionManager()->del($this->getId());
         $this->connectTime = 0;
@@ -78,7 +78,7 @@ class Connection extends HttpContext
     /**
      * {@inheritdoc}
      */
-    public function setRequestResponse(SwRequest $swRequest, SwResponse $swResponse)
+    public function setRequestResponse(SwRequest $swRequest, SwResponse $swResponse): void
     {
         $this->setKey(self::genKey($swRequest->fd));
 
@@ -90,7 +90,7 @@ class Connection extends HttpContext
      */
     public function all(): array
     {
-        return array_merge(parent::all(), [
+        return \array_merge(parent::all(), [
             'ip' => $this->ip,
             'port' => $this->port,
             'path' => $this->path,
@@ -103,11 +103,11 @@ class Connection extends HttpContext
     /**
      * handshake
      */
-    public function handshake()
+    public function handshake(): void
     {
         $this->path = $this->request->getPath();
         $this->handshake = true;
-        $this->handshakeTime = time();
+        $this->handshakeTime = \time();
     }
 
     /**
@@ -121,7 +121,7 @@ class Connection extends HttpContext
     /**
      * @param string $ip
      */
-    public function setIp(string $ip)
+    public function setIp(string $ip): void
     {
         $this->ip = $ip;
     }
@@ -137,7 +137,7 @@ class Connection extends HttpContext
     /**
      * @param int $port
      */
-    public function setPort(int $port)
+    public function setPort(int $port): void
     {
         $this->port = $port;
     }
@@ -153,7 +153,7 @@ class Connection extends HttpContext
     /**
      * @param string $path
      */
-    public function setPath(string $path)
+    public function setPath(string $path): void
     {
         $this->path = $path;
     }
@@ -169,7 +169,7 @@ class Connection extends HttpContext
     /**
      * @param int $connectTime
      */
-    public function setConnectTime(int $connectTime)
+    public function setConnectTime(int $connectTime): void
     {
         $this->connectTime = $connectTime;
     }
@@ -185,7 +185,7 @@ class Connection extends HttpContext
     /**
      * @param bool $handshake
      */
-    public function setHandshake($handshake)
+    public function setHandshake($handshake): void
     {
         $this->handshake = (bool)$handshake;
     }

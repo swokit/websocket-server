@@ -14,7 +14,6 @@ use PhpComp\Http\Message\ServerRequest as Request;
 use Swokit\WebSocket\Server\Connection;
 use Swokit\WebSocket\Server\Message;
 use Swoole\WebSocket\Server;
-use Sws\Application;
 
 /**
  * Interface ModuleInterface
@@ -34,7 +33,7 @@ interface ModuleInterface
      * @param Response $response
      * @return bool
      */
-    public function validateRequest(Request $request, Response $response);
+    public function validateRequest(Request $request, Response $response): bool;
 
     /**
      * @param Request $request

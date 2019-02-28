@@ -4,8 +4,8 @@ $table = new swoole_table(1024);
 $table->column('fd', swoole_table::TYPE_INT);
 $table->create();
 
-$ws = new swoole_websocket_server("0.0.0.0", 9502);
-$ws->table = $table;;
+$ws = new swoole_websocket_server('0.0.0.0', 9502);
+$ws->table = $table;
 
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) {

@@ -109,14 +109,14 @@ abstract class AbstractModule implements ModuleInterface
         $this->getName();
     }
 
-    protected function init()
+    protected function init(): void
     {
     }
 
     /**
      * @inheritdoc
      */
-    public function onHandshake(Request $request, Response $response)
+    public function onHandshake(Request $request, Response $response): void
     {
         $this->log(sprintf(
             'A new user connection. join the path(route): %s, module: %s',
@@ -128,7 +128,7 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * @inheritdoc
      */
-    public function onOpen(int $cid, Connection $conn)
+    public function onOpen(int $cid, Connection $conn): void
     {
         $this->log(sprintf(
             'A new user open connection. route path: %s, module: %s',
@@ -140,7 +140,7 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * @inheritdoc
      */
-    public function onClose(int $cid, Connection $conn)
+    public function onClose(int $cid, Connection $conn): void
     {
         $this->log(sprintf(
             'A user has been disconnected. Path: %s, module: %s',
@@ -152,7 +152,7 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * @inheritdoc
      */
-    public function onError(Application $app, string $msg)
+    public function onError(Application $app, string $msg): void
     {
         $this->log('Accepts a connection on a socket error, when request : ' . $msg, [], Logger::ERROR);
     }
@@ -166,7 +166,7 @@ abstract class AbstractModule implements ModuleInterface
      * @param Response $response
      * @return bool
      */
-    public function validateRequest(Request $request, Response $response)
+    public function validateRequest(Request $request, Response $response): bool
     {
         $cid = $request->getAttribute('fd');
         $origin = $request->getOrigin();
@@ -193,7 +193,7 @@ abstract class AbstractModule implements ModuleInterface
      * @param string $from e.g. `http://foo.example`
      * @return bool
      */
-    public function checkIsAllowedOrigin(string $from)
+    public function checkIsAllowedOrigin(string $from): bool
     {
         $allowed = $this->getOption('allowedOrigins');
 
@@ -233,7 +233,7 @@ abstract class AbstractModule implements ModuleInterface
 
         // parse: get command and real data
         if ($results = $this->getDataParser()->parse($data, $cid, $this)) {
-            list($command, $data) = $results;
+            [$command, $data] = $results;
 
             if (!$command) {
                 $command = $this->options['defaultCmd'] ?: self::DEFAULT_CMD;
@@ -274,7 +274,7 @@ abstract class AbstractModule implements ModuleInterface
      * @param callable $handler
      * @return ModuleInterface
      */
-    public function route(string $path, $handler)
+    public function route(string $path, $handler): ModuleInterface
     {
         $path = '/' . trim($path, '/');
         $this->routes[$path] = $handler;
@@ -288,7 +288,7 @@ abstract class AbstractModule implements ModuleInterface
      * @param callable $handler
      * @return ModuleInterface
      */
-    public function command(string $command, callable $handler)
+    public function command(string $command, callable $handler): ModuleInterface
     {
         return $this->add($command, $handler);
     }
@@ -298,7 +298,7 @@ abstract class AbstractModule implements ModuleInterface
      * @param $handler
      * @return $this
      */
-    public function add(string $command, $handler)
+    public function add(string $command, $handler): self
     {
         if ($command && preg_match('/^[a-z][\w-]+$/', $command)) {
             $this->cmdHandlers[$command] = $handler;
@@ -312,7 +312,7 @@ abstract class AbstractModule implements ModuleInterface
      * @param int $cid
      * @return int
      */
-    public function pingCommand($data, int $cid)
+    public function pingCommand($data, int $cid): int
     {
         return $this->respondText($data . '+PONG', false)->to($cid)->send();
     }
@@ -322,7 +322,7 @@ abstract class AbstractModule implements ModuleInterface
      * @param int $cid
      * @return int
      */
-    public function errorCommand($data, int $cid)
+    public function errorCommand($data, int $cid): int
     {
         return $this
             ->respond($data, 'you send data format is error!', -200, false)
@@ -337,7 +337,7 @@ abstract class AbstractModule implements ModuleInterface
      * @param Connection $conn
      * @return int
      */
-    public function notFoundCommand($data, string $command, int $cid, Connection $conn)
+    public function notFoundCommand($data, string $command, int $cid, Connection $conn): int
     {
         $msg = "You request command [$command] not found in the route [{$conn->getPath()}].";
 
@@ -366,6 +366,7 @@ abstract class AbstractModule implements ModuleInterface
      * @return callable|null
      */
     public function getCmdHandler(string $command)//: ?callable
+    : ?callable
     {
         if (!$this->isCommandName($command)) {
             return null;
@@ -385,7 +386,7 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * @param array $cmdHandlers
      */
-    public function setCmdHandlers(array $cmdHandlers)
+    public function setCmdHandlers(array $cmdHandlers): void
     {
         foreach ($cmdHandlers as $name => $handler) {
             $this->add($name, $handler);
@@ -399,7 +400,7 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * @return string
      */
-    protected function parseClassName()
+    protected function parseClassName(): string
     {
         $className = $fullClass = trim(static::class, '\\');
 
@@ -451,7 +452,7 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * {@inheritdoc}
      */
-    public function log(string $message, array $data = [], $level = Logger::INFO)
+    public function log(string $message, array $data = [], $level = Logger::INFO): void
     {
         $this->app->log($message, $data, $level);
     }
@@ -488,7 +489,7 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * @param DataParserInterface $dataParser
      */
-    public function setDataParser(DataParserInterface $dataParser)
+    public function setDataParser(DataParserInterface $dataParser): void
     {
         $this->_dataParser = $dataParser;
     }
@@ -527,7 +528,7 @@ abstract class AbstractModule implements ModuleInterface
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }

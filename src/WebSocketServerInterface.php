@@ -31,14 +31,14 @@ interface WebSocketServerInterface
      * @param  Server $server
      * @param  Request $request
      */
-    public function onOpen(Server $server, Request $request);
+    public function onOpen(Server $server, Request $request): void;
 
     /**
      * webSocket 收到消息时
      * @param  Server $server
      * @param  Frame $frame
      */
-    public function onMessage(Server $server, Frame $frame);
+    public function onMessage(Server $server, Frame $frame): void;
 
     /**
      * webSocket 建立连接后进行握手。WebSocket服务器已经内置了handshake，
@@ -48,7 +48,7 @@ interface WebSocketServerInterface
      * @param Response $swResponse
      * @return mixed
      */
-    public function onHandShake(Request $swRequest, Response $swResponse);
+    public function onHandShake(Request $swRequest, Response $swResponse): void;
 
     /**
      * send message to client(s)

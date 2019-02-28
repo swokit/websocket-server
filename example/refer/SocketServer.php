@@ -35,12 +35,14 @@ class WebSocketServer1
         $this->socketServer->on('close', [$this, 'onClose']);
     }
 
-    public function message($socketServer, $frame)
+    public function message($socketServer, $frame): ?string
     {
         $client = $frame->fd;
         //get message
         $message = json_decode($frame->data, true);
-        if (!$message) return '';
+        if (!$message) {
+            return '';
+        }
         //get message type
         $type = $message['type'];
         switch ($type) {
@@ -50,17 +52,17 @@ class WebSocketServer1
             case 'update':
                 $stat = new Stat();
                 $nameArray = explode(',', $this->name);
-                $name = $nameArray[rand(0, count($nameArray))];
+                $name = $nameArray[random_int(0, count($nameArray))];
                 $status = [
                     'type' => 'update',
                     'id' => $client,
-                    'angle' => $message["angle"] + 0,
-                    'momentum' => $message["momentum"] + 0,
-                    'x' => $message["x"] + 0,
-                    'y' => $message["y"] + 0,
+                    'angle' => $message['angle'] + 0,
+                    'momentum' => $message['momentum'] + 0,
+                    'x' => $message['x'] + 0,
+                    'y' => $message['y'] + 0,
                     'life' => 1,
                     'size' => $stat->getGender($client) == 1 ? 20 : 4,
-                    'name' => isset($message['name']) ? $message['name'] : $name,
+                    'name' => $message['name'] ?? $name,
                     'authorized' => false,
                 ];
                 return $this->gateWay->updateLocation($client, $status);
@@ -75,7 +77,7 @@ class WebSocketServer1
         }
     }
 
-    public function onOpen($socketServer, $request)
+    public function onOpen($socketServer, $request): void
     {
         $client = $request->fd;
         //将当前连接加入连接池
@@ -91,13 +93,13 @@ class WebSocketServer1
         $this->gateWay->sendTo($client, json_encode($welcome));
     }
 
-    public function onClose($socketServer, $fd)
+    public function onClose($socketServer, $fd): void
     {
         $this->gateWay->close($fd);    //todo : remove
         echo "client-{$fd} is closed\n";
     }
 
-    public function start()
+    public function start(): void
     {
         $this->socketServer->start();
     }

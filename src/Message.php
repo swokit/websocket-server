@@ -55,7 +55,7 @@ final class Message implements \ArrayAccess
      * @param int $sender
      * @return Message
      */
-    public static function make(string $data = '', array $receivers = [], array $excepted = [], int $sender = 0)
+    public static function make(string $data = '', array $receivers = [], array $excepted = [], int $sender = 0): Message
     {
         return new self($data, $receivers, $excepted, $sender);
     }
@@ -91,7 +91,7 @@ final class Message implements \ArrayAccess
      * @param bool $reset
      * @return int
      */
-    public function send($reset = true)
+    public function send($reset = true): int
     {
         if (!$this->ws) {
             throw new \InvalidArgumentException('Please set the property [ws], is instance of the WsServerInterface');
@@ -143,7 +143,7 @@ final class Message implements \ArrayAccess
     /**
      * @param bool $sent
      */
-    public function setSent(bool $sent)
+    public function setSent(bool $sent): void
     {
         $this->_sent = $sent;
     }
@@ -160,7 +160,7 @@ final class Message implements \ArrayAccess
      * @param int $sender
      * @return $this
      */
-    public function sender(int $sender)
+    public function sender(int $sender): self
     {
         return $this->setSender($sender);
     }
@@ -189,7 +189,7 @@ final class Message implements \ArrayAccess
      * @param int $cid
      * @return $this
      */
-    public function receiver(int $cid)
+    public function receiver(int $cid): self
     {
         return $this->addReceiver($cid);
     }
@@ -207,7 +207,7 @@ final class Message implements \ArrayAccess
      * @param array|int $receivers
      * @return $this
      */
-    public function to($receivers)
+    public function to($receivers): self
     {
         return $this->setReceivers($receivers);
     }
@@ -231,7 +231,7 @@ final class Message implements \ArrayAccess
      * @param $receiver
      * @return $this
      */
-    public function except(int $receiver)
+    public function except(int $receiver): self
     {
         if (!\in_array($receiver, $this->excepted, true)) {
             $this->excepted[] = $receiver;
@@ -244,7 +244,7 @@ final class Message implements \ArrayAccess
      * @param array|int $excepted
      * @return $this
      */
-    public function setExcepted($excepted)
+    public function setExcepted($excepted): self
     {
         $this->excepted = (array)$excepted;
 
@@ -256,7 +256,7 @@ final class Message implements \ArrayAccess
      * @param bool $toLast
      * @return $this
      */
-    public function addData(string $data, bool $toLast = true)
+    public function addData(string $data, bool $toLast = true): self
     {
         if ($toLast) {
             $this->data .= $data;
@@ -279,7 +279,7 @@ final class Message implements \ArrayAccess
      * @param string $data
      * @return self
      */
-    public function setData(string $data)
+    public function setData(string $data): self
     {
         $this->data = $data;
 
@@ -298,7 +298,7 @@ final class Message implements \ArrayAccess
      * @param WebSocketServerInterface $ws
      * @return $this
      */
-    public function setWs(WebSocketServerInterface $ws)
+    public function setWs(WebSocketServerInterface $ws): self
     {
         $this->ws = $ws;
 
@@ -316,7 +316,7 @@ final class Message implements \ArrayAccess
     /**
      * @param int $status
      */
-    public function setStatus(int $status)
+    public function setStatus(int $status): void
     {
         $this->_status = $status;
     }

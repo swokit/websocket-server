@@ -24,7 +24,7 @@ class RootModule extends AbstractModule
      * @param Request $request
      * @param Response $response
      */
-    public function onHandshake(Request $request, Response $response)
+    public function onHandshake(Request $request, Response $response): void
     {
         parent::onHandshake($request, $response);
 
@@ -36,7 +36,7 @@ class RootModule extends AbstractModule
      * index command
      * the default command
      */
-    public function indexCommand()
+    public function indexCommand(): void
     {
         $this->respond('hello, welcome to here!');
     }

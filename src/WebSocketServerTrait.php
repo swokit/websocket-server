@@ -50,7 +50,7 @@ trait WebSocketServerTrait
      * @param int $fd
      * @param $fromId
      */
-    public function onConnect($server, $fd, $fromId)
+    public function onConnect($server, $fd, $fromId): void
     {
 //        $info = $this->getClientInfo($fd);
 //        $ctxKey = ServerHelper::genKey($fd);
@@ -67,7 +67,7 @@ trait WebSocketServerTrait
      * @param SwResponse $swResponse
      * @return bool
      */
-    public function onHandShake(SwRequest $swRequest, SwResponse $swResponse)
+    public function onHandShake(SwRequest $swRequest, SwResponse $swResponse): bool
     {
 //        return $this->simpleHandshake($swRequest, $swResponse);
 
@@ -152,12 +152,12 @@ trait WebSocketServerTrait
      * @param $cid
      * @return bool
      */
-    abstract protected function handleHandshake($request, $response, $cid);
+    abstract protected function handleHandshake($request, $response, $cid): bool;
 
     /**
      * @param Connection $conn
      */
-    protected function afterHandshake(Connection $conn)
+    protected function afterHandshake(Connection $conn): void
     {
         // ....
     }
@@ -167,7 +167,7 @@ trait WebSocketServerTrait
      * @param  Server $server
      * @param  SwRequest $request
      */
-    public function onOpen($server, SwRequest $request)
+    public function onOpen($server, SwRequest $request): void
     {
         $cid = $request->fd;
         $conn = $this->connections[$cid];
@@ -182,7 +182,7 @@ trait WebSocketServerTrait
      * @param Server $server
      * @param Connection $conn
      */
-    protected function afterOpen($server, Connection $conn)
+    protected function afterOpen($server, Connection $conn): void
     {
         $server->push($conn->getId(), "hello, welcome\n");
     }
@@ -192,7 +192,7 @@ trait WebSocketServerTrait
      * @param  Server $server
      * @param  Frame $frame
      */
-    public function onMessage($server, Frame $frame)
+    public function onMessage($server, Frame $frame): void
     {
         $fd = $frame->fd;
         $conn = $this->connections[$fd];
@@ -213,7 +213,7 @@ trait WebSocketServerTrait
      * @param Frame $frame
      * @param Connection $conn
      */
-    protected function handleWsMessage($server, Frame $frame, Connection $conn)
+    protected function handleWsMessage($server, Frame $frame, Connection $conn): void
     {
     }
 
@@ -222,7 +222,7 @@ trait WebSocketServerTrait
      * @param  Server $server
      * @param  int $fd
      */
-    public function onClose($server, $fd)
+    public function onClose($server, $fd): void
     {
         /*
         WEBSOCKET_STATUS_CONNECTION = 1，连接进入等待握手
@@ -261,7 +261,7 @@ trait WebSocketServerTrait
      * @param SwResponse $swResponse
      * @return bool
      */
-    protected function validateHeaders($cid, $secKey, SwResponse $swResponse)
+    protected function validateHeaders($cid, $secKey, SwResponse $swResponse): bool
     {
         // sec-websocket-key 错误
         if (WSHelper::isInvalidSecKey($secKey)) {
@@ -279,7 +279,7 @@ trait WebSocketServerTrait
     /**
      * @param $cid
      */
-    public function close($cid)
+    public function close($cid): void
     {
         $this->server->close($cid);
     }
@@ -325,7 +325,7 @@ trait WebSocketServerTrait
      * @param $cid
      * @return bool
      */
-    public function hasConnection(int $cid)
+    public function hasConnection(int $cid): bool
     {
         return isset($this->connections[$cid]);
     }
@@ -405,7 +405,7 @@ trait WebSocketServerTrait
      * @param int $sender 发送者
      * @return int
      */
-    public function sendTo(int $receiver, string $data, int $sender = -1)
+    public function sendTo(int $receiver, string $data, int $sender = -1): int
     {
         $finish = true;
         $opcode = 1;
@@ -548,7 +548,7 @@ trait WebSocketServerTrait
      * param int $length
      * @return int   Return error number code. gt 0 on failure, eq 0 on success
      */
-    public function writeTo($fd, string $data)
+    public function writeTo($fd, string $data): int
     {
         return $this->server->send($fd, $data) ? 0 : 1;
     }
@@ -557,7 +557,7 @@ trait WebSocketServerTrait
      * @param int $cid
      * @return bool
      */
-    public function exist(int $cid)
+    public function exist(int $cid): bool
     {
         return $this->server->exist($cid);
     }
@@ -585,7 +585,7 @@ trait WebSocketServerTrait
     /**
      * @param Connection[] $connections
      */
-    public function setConnections(array $connections)
+    public function setConnections(array $connections): void
     {
         $this->connections = $connections;
     }

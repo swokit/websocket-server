@@ -56,7 +56,7 @@ trait WebSocketApplicationTrait
      * @param int $cid
      * @return bool
      */
-    public function handleHandshake(ServerRequest $request, Response $response, int $cid)
+    public function handleHandshake(ServerRequest $request, Response $response, int $cid): ?bool
     {
         $path = $request->getPath();
 
@@ -104,7 +104,7 @@ trait WebSocketApplicationTrait
     /**
      * @inheritdoc
      */
-    public function handleWsMessage($server, Frame $frame, Connection $conn)
+    public function handleWsMessage($server, Frame $frame, Connection $conn): void
     {
         // dispatch command
 
@@ -127,7 +127,7 @@ trait WebSocketApplicationTrait
      * @param Connection $conn
      * @param $catcher
      */
-    public function handleWsException($e, Connection $conn, $catcher)
+    public function handleWsException($e, Connection $conn, $catcher): void
     {
         $error = PhpHelper::exceptionToString($e, 1, $catcher);
 
@@ -147,7 +147,7 @@ trait WebSocketApplicationTrait
      * @param bool $replace replace exists's route
      * @return ModuleInterface
      */
-    public function addModule(string $path, ModuleInterface $module, $replace = false)
+    public function addModule(string $path, ModuleInterface $module, $replace = false): ModuleInterface
     {
         return $this->module($path, $module, $replace);
     }
@@ -158,7 +158,7 @@ trait WebSocketApplicationTrait
      * @param bool $replace
      * @return ModuleInterface
      */
-    public function module(string $path, ModuleInterface $module, $replace = false)
+    public function module(string $path, ModuleInterface $module, $replace = false): ModuleInterface
     {
         $path = \trim($path) ?: '/';
         $pattern = '/^\/[a-zA-Z][\w-]+$/';
@@ -192,7 +192,7 @@ trait WebSocketApplicationTrait
      * @param bool $throwError
      * @return ModuleInterface
      */
-    public function getModule(string $path = '/', $throwError = true)
+    public function getModule(string $path = '/', $throwError = true): ModuleInterface
     {
         if (!$this->hasModule($path)) {
             if ($throwError) {
@@ -224,7 +224,7 @@ trait WebSocketApplicationTrait
     /**
      * @param array $modules
      */
-    public function setModules(array $modules)
+    public function setModules(array $modules): void
     {
         foreach ($modules as $route => $module) {
             $this->module($route, $module);
@@ -245,12 +245,12 @@ trait WebSocketApplicationTrait
         return $this->users[$index] ?? null;
     }
 
-    public function userLogin($index, $data)
+    public function userLogin($index, $data): void
     {
 
     }
 
-    public function userLogout($index, $data)
+    public function userLogout($index, $data): void
     {
 
     }

@@ -24,7 +24,7 @@ class EchoModule extends AbstractModule
      * @param Request $request
      * @param Response $response
      */
-    public function onHandshake(Request $request, Response $response)
+    public function onHandshake(Request $request, Response $response): void
     {
         parent::onHandshake($request, $response);
 
@@ -37,7 +37,7 @@ class EchoModule extends AbstractModule
      * the default command
      * @param $data
      */
-    public function indexCommand($data)
+    public function indexCommand($data): void
     {
         $this->respondText('you input: ' . $data);
     }

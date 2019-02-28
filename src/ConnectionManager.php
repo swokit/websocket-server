@@ -27,7 +27,7 @@ class ConnectionManager extends ContextManager
     /**
      * @return array
      */
-    public function getConnections()
+    public function getConnections(): array
     {
         return $this->getContextList();
     }

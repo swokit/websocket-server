@@ -14,7 +14,7 @@ namespace Swokit\WebSocket\Server\Module;
  */
 class AbstractHandler implements HandlerInterface
 {
-    public function run(string $command)
+    public function run(string $command): void
     {
         // TODO: Implement run() method.
     }

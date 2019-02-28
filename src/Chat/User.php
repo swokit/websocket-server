@@ -22,7 +22,7 @@ class User
     /**
      * @return int
      */
-    public function getCid()
+    public function getCid(): int
     {
         return $this->cid;
     }
@@ -30,7 +30,7 @@ class User
     /**
      * @param int $cid
      */
-    public function setCid($cid)
+    public function setCid($cid): void
     {
         $this->cid = $cid;
     }

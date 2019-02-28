@@ -84,7 +84,7 @@ class WebSocketServer extends HttpServer implements WebSocketServerInterface
      * @param  Server $server
      * @param  Request $request
      */
-    public function onOpen(Server $server, Request $request)
+    public function onOpen(Server $server, Request $request): void
     {
         $this->log("onOpen: Client [fd:{$request->fd}] open connection.");
 
@@ -97,7 +97,7 @@ class WebSocketServer extends HttpServer implements WebSocketServerInterface
      * @param  Server $server
      * @param  Frame $frame
      */
-    public function onMessage(Server $server, Frame $frame)
+    public function onMessage(Server $server, Frame $frame): void
     {
         $this->log("onMessage: Client [fd:{$frame->fd}] send message: {$frame->data}");
 
@@ -115,7 +115,7 @@ class WebSocketServer extends HttpServer implements WebSocketServerInterface
      * @param  Server $server
      * @param           $frame
      */
-    public function onHandShake(Server $server, $frame)
+    public function onHandShake(Server $server, $frame): void
     {
         $this->log("[fd: {$frame->fd}] Message: {$frame->data}");
 
@@ -161,7 +161,7 @@ class WebSocketServer extends HttpServer implements WebSocketServerInterface
      * @param $cid
      * @return bool
      */
-    protected function handleHandshake($request, $response, $cid)
+    protected function handleHandshake($request, $response, $cid): ?bool
     {
         // TODO: Implement handleHandshake() method.
     }

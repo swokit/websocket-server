@@ -14,5 +14,5 @@ namespace Swokit\WebSocket\Server\Module;
  */
 interface HandlerInterface
 {
-    public function run(string $command);
+    public function run(string $command): void;
 }

@@ -16,24 +16,24 @@ namespace App\Ws\Modules;
  */
 class ChatModule extends \Swokit\WebSocket\Server\Module\ChatModule
 {
-    protected function init()
+    protected function init(): void
     {
         parent::init();
 
         $this->setName('chatRoom');
     }
 
-    public function joinCommand($data)
+    public function joinCommand($data): void
     {
 
     }
 
-    public function logoutCommand()
+    public function logoutCommand(): void
     {
 
     }
 
-    public function loginCommand()
+    public function loginCommand(): void
     {
 
     }

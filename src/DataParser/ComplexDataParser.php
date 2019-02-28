@@ -40,7 +40,7 @@ class ComplexDataParser implements DataParserInterface
 
         if (preg_match('/^\[@([\w-]+)\](.+)/', $data, $matches)) {
             array_shift($matches);
-            list($command, $realData) = $matches;
+            [$command, $realData] = $matches;
 
             // access default command
         } else {
